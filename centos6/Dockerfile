@@ -1,7 +1,7 @@
 FROM centos:6
-LABEL maintainer "Mark Howison <mhowison@brown.edu>"
-LABEL repository mhowison
-LABEL image conda-build
+LABEL maintainer "Paul Stey <paul_stey@brown.edu>"
+LABEL repository pstey
+LABEL image conda3-build
 LABEL tag v2
 
 RUN yum update -y
@@ -33,11 +33,11 @@ USER conda
 ENV HOME /home/conda
 
 RUN cd /home/conda \
- && wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh \
- && bash Miniconda3-latest-Linux-x86_64.sh -b \
- && rm Miniconda3-latest-Linux-x86_64.sh
+ && wget https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh
+ && bash Anaconda3-2018.12-Linux-x86_64.sh -b \
+ && rm Anaconda3-2018.12-Linux-x86_64.sh
 
-ENV PATH /home/conda/miniconda2/bin:$PATH
+ENV PATH /home/conda/anaconda3/bin:$PATH
 
 RUN conda install -y conda-build anaconda-client gcc
 RUN conda clean -ay
